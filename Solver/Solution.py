@@ -6,7 +6,8 @@ class Solution:
 	def __init__(self, partList):
 		self.Output = self.Solve(partList, options = False)
 	
-	def Solve(self, partList):
+	def Solve(self, partList, options = False):
+
 		# takes in the raw problem data
 		# order the parts 
 		# place them in the bins

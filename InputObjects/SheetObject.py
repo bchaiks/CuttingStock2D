@@ -28,7 +28,7 @@ class SheetObject:
 		self.usableSize = [fullSize[0] - 2*marginAtSheetEdge, fullSize[1] - 2*marginAtSheetEdge]
 		
 		#dictionary formatted position information
-		self.yCoordinate = 5.0 + self.fullSize[1]) * self.Index
+		self.yCoordinate = (5.0 + self.fullSize[1]) * self.Index
 		self.Coordinates = {'sheet': self.Index, 'x': 0, 'y': self.yCoordinate}
 		
 		

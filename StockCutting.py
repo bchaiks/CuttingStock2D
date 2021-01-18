@@ -2,9 +2,9 @@
 Cutting Stock Solver
 """
 import json
-# import SolutionObject
+from Solver.Solution import Solution
 
 def StockCutting(inputData):
     parts = inputData.get_json()['dimensions']
-    return Solution(parts).Output
+    return(Solution(parts).Output)
 
