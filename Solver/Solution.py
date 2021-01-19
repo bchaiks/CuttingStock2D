@@ -13,6 +13,8 @@ class Solution:
 		# place them in the bins
 		# return the FORMATTED OUTPUT
 		
+		# loop through sheets and open extreme points
+		
 	def FormattedOutput(partList):
 		# takes in a list of PartObjects
 		

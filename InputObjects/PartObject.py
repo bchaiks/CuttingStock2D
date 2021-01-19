@@ -24,3 +24,5 @@ class PartObject:
 Will be able to format the final position 
 using the SheetIndex, sheetSize, and margin inputs... 
 '''
+
+# for the 3D version add the orientation in here!
