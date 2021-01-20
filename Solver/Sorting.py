@@ -14,14 +14,13 @@ def SortArrayByArgMinIndex(array,index):
 	MAKE SURE TO SORT BY MOST IMPORTANT INDEX LAST!!!
 	'''
 	a = array
-	ind = index
 	L = len(a)
 	for i in range(L):
 		temp = a[i]
 		flag = 0
 		j = 0
 		while j < i and flag == 0:
-			if temp[ind] < a[j][ind]:
+			if temp[index] < a[j][index]:
 				a[j+1] = a[j]
 				a[j] = temp
 				j += 1
