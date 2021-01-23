@@ -11,7 +11,7 @@ class PartObject:
 		self.ExtremePointIndex = None
 	
 	def FormatOutput(self, parameters):
-		if self.SheetIndex is None
+		if self.SheetIndex is None:
 			# do something, raise an exception? 
 			
 		margin = parameters.edgeMargin
