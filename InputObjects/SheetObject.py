@@ -11,7 +11,6 @@ Stores:
 """
 from Solver.Sorting import UniqueValues
 
-
 class SheetObject:
 	# i.e. ALL sheets share these
 	marginAtSheetEdge = 1.0
@@ -45,6 +44,8 @@ class SheetObject:
 		
 		# newPart is a PartObject that has Dims and EP already, and 
 		# the SheetObject (self) has the rest of it...
+		
+		
 	def Update_EP(Dims, EP, Curr_EPs, Curr_Items, piece_margin):
 	'''
 	Dims = 1x2 WxD of current piece placed 
@@ -85,5 +86,20 @@ class SheetObject:
 	#New_Eps = unq(New_Eps)
 	return (UniqueValues(New_Eps))
 
+
+	NE = Update_EP(Dims, EPL[e_cand], Curr_EP, Curr_Items, Piece_Margin)
+		
+		
+			Cr_Item[k].append(Dims)
+			Cr_EPs[k].append(EPL[e_cand])
+			L = len(Cr_EPs[k])
+			del EPL[e_cand]
+
+			for i in range(len(NE)): 
+				EPL.append(NE[i])
+		
+			#Sort (non-decreasing) EPs by y coordinate, then x coordinate 
+			for i in range(2):
+				EPL = index_sort(EPL, 1-i)
 		
 		

@@ -3,7 +3,7 @@ Part ordering -- EVENTUALLY INCLUDE RANDOMIZED ETC...
 """
 
 
-def NonIncreasingOrder(tuples, specificValues):
+def SortPartObjects(PartObjectList, specificValues):
 	'''e.g. parts by area or volume, or PartObjects by position in list'''
 	orderedTuples = [i for _,i in sorted(zip(specificValues, tuples), reverse = True)]
 	return(orderedTuples)

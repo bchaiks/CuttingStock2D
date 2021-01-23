@@ -1,20 +1,24 @@
 """
 Solution Object
 """
+from Solver.Formatting import *
+from Solver.Sorting import *
 
-class Solution:
-	def __init__(self, partList):
-		self.Output = self.Solve(partList, options = False)
+def Solution(self, rawPartDict, options = False):
+	# options will contain the "randomized b&b" for instance...
+
+	unsortedParts = FormattedInput(rawPartDict)
+	Areas = [Part.Area for Part in unsortedParts]
+	Parts = []
+	if options:
+		# do something else
+	else:
+		Parts = SortPartObjects(unsortedParts,Areas)
+
+	# place them in the bins according to merit and feasibility,
+	# return the FORMATTED OUTPUT
 	
-	def Solve(self, partList, options = False):
-
-		# takes in the raw problem data
-		# order the parts 
-		# place them in the bins
-		# return the FORMATTED OUTPUT
+	# loop through sheets and open extreme points
 		
-		# loop through sheets and open extreme points
-		
-	def FormattedOutput(partList):
-		# takes in a list of PartObjects
+	return(FormattedOutput(Parts, Sheets))
 		
