@@ -1,5 +1,5 @@
-from Solver.Formatting import *
-from Solver.Sorting import *
+from SolverObjects.Processes.Formatting import *
+from SolverObjects.Processes.Sorting import *
 from Solver.Solve import Solve
 from SolverObjects.Parameters import Parameters
 

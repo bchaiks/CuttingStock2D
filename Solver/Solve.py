@@ -16,11 +16,13 @@ def Solve(partList, sheetList, parameters):
 					bestMerit = BoundingBox(part, p, sheet)
 					part.ExtremePointIndex = p
 					part.sheetIndex = i
+					part.Position = sheet.extremePoints[p]
 		
 		if part.sheetIndex is None:
 			sheetList.append(SheetObject(parameters,len(sheetList))
 			part.sheetIndex = len(sheetList) - 1
 			part.ExtremePointIndex = 0
+			part.Position = sheet.extremePoints[0]
 			
 		AddPartToSheet(sheetList[part.sheetIndex], part, parameters.partMargin)				
 					
