@@ -25,7 +25,7 @@ class PartObject:
 		self.SheetIndex = None
 		# Actual coordinate of placement function of the placement ant 
 		# the sheet index...
-		self.LowerLeftCoordinate = None
+		self.Position = None
 		# index of extreme point in SheetObject.extremePoints 
 		# (for use in the algorithm)  -- i.e. this will get the 
 		# e_cand index within the algorithm...

@@ -1,24 +1,23 @@
-"""
-Solution Object
-"""
 from Solver.Formatting import *
 from Solver.Sorting import *
+from solver.Solve import Solve
 
-def Solution(self, rawPartDict, options = False):
+""" Function that returns a formatted solution """
+
+def Solution(rawPartDict, sheetSize, options = False):
 	# options will contain the "randomized b&b" for instance...
-
-	unsortedParts = FormattedInput(rawPartDict)
-	Areas = [Part.Area for Part in unsortedParts]
 	Parts = []
+	Sheets = [SheetObject(sheetSize)]	# Start with one
+	
+	unsortedParts = FormattedInput(rawPartDict)
+	
 	if options:
 		# do something else
 	else:
-		Parts = SortPartObjects(unsortedParts,Areas)
-
-	# place them in the bins according to merit and feasibility,
-	# return the FORMATTED OUTPUT
+		Areas = [Part.Area for Part in unsortedParts]
+		Parts = SortPartObjects(unsortedParts, Areas)
 	
-	# loop through sheets and open extreme points
+	Solve(Parts, Sheets, sheetSize)
 		
 	return(FormattedOutput(Parts, Sheets))
 		
