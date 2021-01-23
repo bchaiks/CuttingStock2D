@@ -1,15 +1,16 @@
 from Solver.Formatting import *
 from Solver.Sorting import *
-from solver.Solve import Solve
+from Solver.Solve import Solve
+from SolverObjects.Parameters import Parameters
 
 """ Function that returns a formatted solution """
 
 def Solution(rawPartDict, sheetSize, options = False):
-	# options will contain the "randomized b&b" for instance...
+	# options could signal the "randomized b&b" for instance...
+	problemParameters = Parameters(sheetSize)
 	Parts = []
-	Sheets = [SheetObject(sheetSize)]	# Start with one
-	
-	unsortedParts = FormattedInput(rawPartDict)
+	Sheets = []	
+	unsortedPartObjects = FormattedInput(rawPartDict)
 	
 	if options:
 		# do something else
@@ -17,7 +18,7 @@ def Solution(rawPartDict, sheetSize, options = False):
 		Areas = [Part.Area for Part in unsortedParts]
 		Parts = SortPartObjects(unsortedParts, Areas)
 	
-	Solve(Parts, Sheets, sheetSize)
+	Solve(Parts, Sheets, problemParameters)
 		
-	return(FormattedOutput(Parts, Sheets))
+	return(FormattedOutput(Parts, Sheets, problemParameters))
 		

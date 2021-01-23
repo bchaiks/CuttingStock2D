@@ -1,18 +1,11 @@
-"""
-Part ordering -- EVENTUALLY INCLUDE RANDOMIZED ETC...
-"""
-
+""" Part ordering -- EVENTUALLY INCLUDE RANDOMIZED ETC... """
 
 def SortPartObjects(PartObjectList, specificValues):
-	'''e.g. parts by area or volume, or PartObjects by position in list'''
-	orderedTuples = [i for _,i in sorted(zip(specificValues, tuples), reverse = True)]
-	return(orderedTuples)
+	orderedParts = [i for _,i in sorted(zip(specificValues, PartObjectList), reverse = True)]
+	return(orderedParts)
 
 def SortArrayByArgMinIndex(array,index):
-	'''
-	Sorts a multi_dim array by index that minimizes certain entry
-	MAKE SURE TO SORT BY MOST IMPORTANT INDEX LAST!!!
-	'''
+	''' MAKE SURE TO SORT BY MOST IMPORTANT INDEX LAST!!! '''
 	a = array
 	L = len(a)
 	for i in range(L):
@@ -29,7 +22,6 @@ def SortArrayByArgMinIndex(array,index):
 	return(a)
 
 def UniqueValues(array):
-	''' return unique values of an array '''
 	u_a = []
 	L = len(array)
 	for i in range(L):

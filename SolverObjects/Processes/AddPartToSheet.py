@@ -3,11 +3,11 @@ from Solver.Geometry import TakesProjection
 
 """ adding a new part to a sheet """
 
-def AddPartToSheet(sheetObject, newPart):
+def AddPartToSheet(sheetObject, newPart, marginBetweenParts):
 	
 	del sheetObject.extremePoints[newPart.ExtremePointIndex]
 	
-	for newExtremePoint in NewExtremePoints(sheetObject,newPart):
+	for newExtremePoint in NewExtremePoints(sheetObject, newPart, marginBetweenParts):
 		sheetObject.extremePoints.append(newExtremePoint)
 		
 	for i in range(2):
@@ -16,20 +16,20 @@ def AddPartToSheet(sheetObject, newPart):
 	sheetObject.currentParts.append(newPart)
 	
 
-def NewExtremePoints(sheetObject, newPart):
+def NewExtremePoints(sheetObject, newPart, marginBetweenParts):
 	'''
 	lower left coordinate of newPart pushed out in x and y dimensions, 
 	then projected onto the nearest part on the sheet (or the axis)
 	'''
-	p_m = sheetObject.marginBetweenParts
+	p_m = marginBetweenParts
 	D = newPart.Dim
 	CI = sheetObject.currentParts
-	CE = [Part.LowerLeftCoordinate for Part in CI]
-	EP = newPart.LowerLeftCoordinate
+	CE = [Part.Position for Part in CI]
+	EP = newPart.Position
 	New_Eps = [[EP[0]+D[0] + p_m,EP[1]],
 				[EP[0],EP[1]+D[1] + p_m]]
 
-	Max_bounds = [-1., -1. ]
+	Max_bounds = [-1., -1.]
 
 	for i in range(len(CI)):
 		# shrinking y coordinate
