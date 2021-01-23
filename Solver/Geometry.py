@@ -3,13 +3,11 @@
 def CheckFeasibility(newPart, candidatePositionIndex, sheet):
 	
 	candidatePosition = sheet.extremePoints[candidatePositionIndex]
-	
 	check = True	
 	
 	for i in range(2):		# check if violate sheet limits
 		if newPart.Dim[i] + candidatePosition[i] > sheet.useableSize[i]:
-			check = False
-		
+			check = False	
 	for j in range(len(sheet.currentParts)):	# check if overlap with current parts
 		if overlap(newPart,candidatePosition, sheet.currentParts[j]): 
 			check = False
@@ -37,7 +35,6 @@ def TakesProjection(Part1, Part2, proj_dir):
 	
 	pd = proj_dir	
 	od = 1-pd
-	
 	check = True
 
 	if Part2.Dim[pd] + Part2.Position[pd] > Part1.Position[pd]:

@@ -9,22 +9,17 @@ def Solve(partList, sheetList, sheetSize):
 	for part in partList:
 		
 		candidatePosition = None
-		
 		bestMerit = 2 * sheetSize[0] * sheetSize[1]
 		
 		for i in range len(sheetList):
-			
 			sheet = sheetList[i] 
-			
 			for p in range(len(sheet.extremePoints)):
 				if FeasibleAndBestMerit(part, p, sheet, bestMerit):
-				
 					bestMerit = BoundingBox(part, p, sheet)
 					candidatePosition = p
 					part.sheetIndex = i
 		
 		if part.sheetIndex is None:
-			
 			sheetList.append(SheetObject(sheetSize))
 			part.sheetIndex = len(sheetList) - 1
 			candidatePosition = 0
