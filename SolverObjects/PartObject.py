@@ -12,8 +12,8 @@ class PartObject:
 	
 	def FormatOutput(self, parameters):
 		if self.SheetIndex is None:
-			# do something, raise an exception? 
-			
+			return("Can only run this AFTER placing the parts")
+			 
 		margin = parameters.edgeMargin
 		ySheetCoordinate = (parameters.sheetMargin + parameters.sheetSize[1]) * self.SheetIndex
 		

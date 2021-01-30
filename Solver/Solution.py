@@ -1,6 +1,6 @@
 from SolverObjects.Processes.Formatting import *
 from SolverObjects.Processes.Sorting import *
-from Solver.Solve import Solve
+from .Solve import Solve
 from SolverObjects.Parameters import Parameters
 
 """ Function that returns a formatted solution """
@@ -14,6 +14,7 @@ def Solution(rawPartDict, sheetSize, options = False):
 	
 	if options:
 		# do something else
+		return("this function hasn't been configured yet.")
 	else:
 		Areas = [Part.Area for Part in unsortedParts]
 		Parts = SortPartObjects(unsortedParts, Areas)
