@@ -15,7 +15,7 @@ def Solve(partList, sheetList, parameters):
 				if FeasibleAndBestMerit(part, p, sheet, bestMerit):
 					bestMerit = BoundingBox(part, p, sheet)
 					part.ExtremePointIndex = p
-					part.sheetIndex = i
+					part.SheetIndex = i
 					part.Position = sheet.extremePoints[p]
 		
 		if part.SheetIndex is None:

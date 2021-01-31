@@ -16,8 +16,6 @@ def Solution(rawPartDict, sheetSize, options = False):
 		# do something else
 		return("this functionality hasn't been configured yet.")
 	else:
-		#Areas = [Part.Area for Part in unsortedPartObjects]
-		#Parts = SortPartObjects(unsortedPartObjects, Areas)
 		Parts = sorted(unsortedPartObjects, key=lambda part: part.Area, reverse = True) 
 		
 	Solve(Parts, Sheets, problemParameters)

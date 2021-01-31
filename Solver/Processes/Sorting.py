@@ -1,8 +1,10 @@
-""" Part ordering -- EVENTUALLY INCLUDE RANDOMIZED ETC... """
+""" EVENTUALLY INCLUDE RANDOMIZED ETC... """
 
-def SortPartObjects(PartObjectList, specificValues):
-	orderedParts = [i for _,i in sorted(zip(specificValues, PartObjectList), reverse = True)]
-	return(orderedParts)
+def Randomize(partObjects):
+	# eventually want to randomize the order
+	# and re-run the whole thing to get a broader 
+	# picture of the solution space
+	return(partObjects)
 
 def SortArrayByArgMinIndex(array,index):
 	''' MAKE SURE TO SORT BY MOST IMPORTANT INDEX LAST!!! '''
