@@ -1,7 +1,7 @@
-from SolverObjects.Processes.Formatting import *
-from SolverObjects.Processes.Sorting import *
+from .Formatting import *
+from .Processes.Sorting import *
 from .Solve import Solve
-from SolverObjects.Parameters import Parameters
+from .SolverObjects.Parameters import Parameters
 
 """ Function that returns a formatted solution """
 
@@ -14,11 +14,12 @@ def Solution(rawPartDict, sheetSize, options = False):
 	
 	if options:
 		# do something else
-		return("this function hasn't been configured yet.")
+		return("this functionality hasn't been configured yet.")
 	else:
-		Areas = [Part.Area for Part in unsortedParts]
-		Parts = SortPartObjects(unsortedParts, Areas)
-	
+		#Areas = [Part.Area for Part in unsortedPartObjects]
+		#Parts = SortPartObjects(unsortedPartObjects, Areas)
+		Parts = sorted(unsortedPartObjects, key=lambda part: part.Area, reverse = True) 
+		
 	Solve(Parts, Sheets, problemParameters)
 		
 	return(FormattedOutput(Parts, Sheets, problemParameters))

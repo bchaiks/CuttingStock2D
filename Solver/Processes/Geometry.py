@@ -21,11 +21,11 @@ def overlap(Part1, position, Part2):
 	
 	if position[0] >= Part2.Dim[0] + Part2.Position[0]:
 		ov = False
-	if Part2.Position[0] >= Part1.Position[0] + Part1.Dim[0]:
+	if Part2.Position[0] >= position[0] + Part1.Dim[0]:
 		ov = False
 	if position[1] >= Part2.Dim[1] + Part2.Position[1]:
 		ov = False
-	if Part2.Position[1] >= Part1.Position[1] + Part1.Dim[1]:
+	if Part2.Position[1] >= position[1] + Part1.Dim[1]:
 		ov = False
 		
 	return ov

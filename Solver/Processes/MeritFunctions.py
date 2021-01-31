@@ -5,9 +5,6 @@ Functions for computing merit of particular positions
 def BoundingBox(newPart, candidatePositionIndex, sheet):
 		
 		candidatePosition = sheet.extremePoints[candidatePositionIndex]
-		D = Dims
-		CI = curr_items
-		CE = curr_eps
 
 		X = candidatePosition[0] + newPart.Dim[0]
 		Y =  candidatePosition[1] + newPart.Dim[1]

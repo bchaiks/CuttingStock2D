@@ -1,5 +1,5 @@
-from Processes.Sorting import *
-from Solver.Geometry import TakesProjection
+from .Processes.Sorting import *
+from .Processes.Geometry import TakesProjection
 
 """ adding a new part to a sheet """
 

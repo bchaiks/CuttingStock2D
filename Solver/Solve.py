@@ -1,7 +1,7 @@
-from StockCutting.SolverObjects.SheetObject import SheetObject
-import StockCutting.Solver.Geometry as gm
-from ..SolverObjects.Processes.AddPartToSheet import AddPartToSheet 
-from .MeritFunctions import BoundingBox
+from .SolverObjects.SheetObject import SheetObject
+from .Processes.Geometry import *
+from .AddPartToSheet import AddPartToSheet 
+from .Processes.MeritFunctions import BoundingBox
 
 """ Solve function and ancillary... """
 
@@ -18,17 +18,17 @@ def Solve(partList, sheetList, parameters):
 					part.sheetIndex = i
 					part.Position = sheet.extremePoints[p]
 		
-		if part.sheetIndex is None:
+		if part.SheetIndex is None:
 			nextIndex = len(sheetList)
 			sheetList.append(SheetObject(parameters, nextIndex))
-			part.sheetIndex = len(sheetList) - 1
+			part.SheetIndex = len(sheetList) - 1
 			part.ExtremePointIndex = 0
-			part.Position = sheet.extremePoints[0]
+			part.Position = sheetList[part.SheetIndex].extremePoints[0]
 			
-		AddPartToSheet(sheetList[part.sheetIndex], part, parameters.partMargin)				
+		AddPartToSheet(sheetList[part.SheetIndex], part, parameters.partMargin)				
 					
 def FeasibleAndBestMerit(part, index, sheet, currentBest):
-	if gm.CheckFeasibility(part, index, sheet) and gm.BoundingBox(part, index, sheet) < currentBest:
+	if CheckFeasibility(part, index, sheet) and BoundingBox(part, index, sheet) < currentBest:
 		return True
 	else:
 		return False 
