@@ -1,7 +1,7 @@
-from .Formatting import *
-from .Processes.Sorting import *
-from .Solve import Solve
-from .SolverObjects.Parameters import Parameters
+from Formatting import *
+from Processes.Sorting import *
+from Solve import Solve
+from SolverObjects.Parameters import Parameters
 
 """ Function that returns a formatted solution """
 

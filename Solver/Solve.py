@@ -1,7 +1,7 @@
-from .SolverObjects.SheetObject import SheetObject
-from .Processes.Geometry import *
-from .AddPartToSheet import AddPartToSheet 
-from .Processes.MeritFunctions import BoundingBox
+from SolverObjects.SheetObject import SheetObject
+from Processes.Geometry import *
+from AddPartToSheet import AddPartToSheet 
+from Processes.MeritFunctions import BoundingBox
 
 """ Solve function and ancillary... """
 

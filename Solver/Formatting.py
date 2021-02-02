@@ -1,4 +1,4 @@
-from .SolverObjects.PartObject import PartObject
+from SolverObjects.PartObject import PartObject
 #import json
 
 """ Functions for formatting input and output """
