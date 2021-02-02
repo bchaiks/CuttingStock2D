@@ -17,8 +17,7 @@ def FormattedInput(inputPartDict):
 	
 def FormattedOutput(reOrderedPartObjects, sheetObjects, parameters):
 	
-	originalPartOrderIndices = [Part.Index for Part in reOrderedPartObjects] 
-	originalOrderPartsList = [i for _,i in sorted(zip(originalPartOrderIndices, reOrderedPartObjects))]
+	originalOrderPartsList = sorted(reOrderedPartObjects, key=lambda part: part.Index)
 	
 	partOutput = [Part.FormatOutput(parameters) for Part in originalOrderPartsList]
 	sheetOutput = [Sheet.Coordinates for Sheet in sheetObjects]
