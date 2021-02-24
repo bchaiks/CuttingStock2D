@@ -19,7 +19,7 @@ testing = True
 
 """ Stock Cutting Solver """
 
-# Solver Objects ######################################
+# Solver Objects #######################################
 
 class Parameters:
 	edgeMargin = 1.0
@@ -54,19 +54,15 @@ class PartObject:
 	
 	def FormatOutput(self, parameters):
 		if self.SheetIndex is None:
-			return("Can only run this AFTER placing the parts")
-			 
+			return("Can only run this AFTER placing the parts")	 
 		margin = parameters.edgeMargin
 		ySheetCoordinate = (parameters.sheetMargin + parameters.sheetSize[1]) * self.SheetIndex
-		
 		xPosition = self.Position[0] + margin
 		yPosition = self.Position[1] + margin + ySheetCoordinate
-		
 		return(OrderedDict([('part', self.Label),('x', xPosition), ('y', yPosition)]))
 
-'''# end objects #####################################'''
-
-# functions for formatting input ###################
+##############################################################
+# functions for formatting input #############################
 def FormattedInput(inputPartDict):
 	Labels = list(inputPartDict.keys())
 	partObjects = []	
@@ -86,12 +82,10 @@ def FormattedOutput(reOrderedPartObjects, sheetObjects, parameters):
 	formattedOutput = OrderedDict([("results",partsAndSheets)])
 	return(json.dumps(formattedOutput))
 
-'''# end formatting ###################################'''
-
-# Geometry functions ###############################
+############################################################
+# Geometry functions #######################################
 
 def CheckFeasibility(newPart, candidatePositionIndex, sheet):
-	
 	candidatePosition = sheet.extremePoints[candidatePositionIndex]
 	check = True	
 	
@@ -118,7 +112,6 @@ def overlap(Part1, position, Part2):
 	return ov
 		
 def TakesProjection(Part1, Part2, proj_dir):
-	
 	pd = proj_dir	
 	od = 1-pd
 	check = True
@@ -134,14 +127,11 @@ def TakesProjection(Part1, Part2, proj_dir):
 		check = False
 	return check
 
-'''# End Geometry Functions ############################'''
+#########################################################
+# Merit Function for Positioning ########################
 
-# Merit Function for Positioning ####################
-
-def BoundingBox(newPart, candidatePositionIndex, sheet):
-		
+def BoundingBox(newPart, candidatePositionIndex, sheet):	
 	candidatePosition = sheet.extremePoints[candidatePositionIndex]
-
 	X = candidatePosition[0] + newPart.Dim[0]
 	Y =  candidatePosition[1] + newPart.Dim[1]
 		
@@ -155,14 +145,11 @@ def BoundingBox(newPart, candidatePositionIndex, sheet):
 	val = X*Y + X 	# Slightly penalizing things far in the X dimension	
 	return(val)
 
-'''# end Merit Function ################################'''
-
+#####################################################
 # Sorting Functions #################################
-
 def Randomize(partObjects):
-	# eventually want to randomize the order
-	# and re-run the whole thing to get a broader 
-	# picture of the solution space
+	# eventually want to randomize the order and re-run the 
+	# whole thing to get a broader picture of the solution space
 	return(partObjects)
 
 def SortArrayByArgMinIndex(array,index):
@@ -192,24 +179,11 @@ def UniqueValues(array):
 			u_a.append(array[i])
 	return(u_a)
 
-'''# End sorting functions #############################'''
-
-# Functions to add part to Sheet #####################
-
-def AddPartToSheet(sheetObject, newPart, marginBetweenParts):
-	
-	del sheetObject.extremePoints[newPart.ExtremePointIndex]
-	for newExtremePoint in NewExtremePoints(sheetObject, newPart, marginBetweenParts):
-		sheetObject.extremePoints.append(newExtremePoint)	
-	for i in range(2):
-		sheetObject.extremePoints = SortArrayByArgMinIndex(sheetObject.extremePoints,1-i)
-	sheetObject.currentParts.append(newPart)
-	
+########################################################
+### Functions to add part to Sheet #####################
 def NewExtremePoints(sheetObject, newPart, marginBetweenParts):
-	'''
-	lower left coordinate of newPart pushed out in x and y dimensions, 
-	then projected onto the nearest part on the sheet (or the axis)
-	'''
+	''' lower left coordinate of newPart pushed out in x and y dimensions, 
+	then projected onto the nearest part on the sheet (or the axis) '''
 	p_m = marginBetweenParts
 	D = newPart.Dim
 	CI = sheetObject.currentParts
@@ -229,9 +203,17 @@ def NewExtremePoints(sheetObject, newPart, marginBetweenParts):
 			New_Eps[1] = [CE[i][0] + CI[i].Dim[0] + p_m, EP[1] + D[1] + p_m]
 			Max_bounds[1] = CE[i][0] + CI[i].Dim[0] + p_m	
 	return (UniqueValues(New_Eps))
-# End add part to sheet #############################
 
-# Solve routine #####################################
+def AddPartToSheet(sheetObject, newPart, marginBetweenParts):
+	del sheetObject.extremePoints[newPart.ExtremePointIndex]
+	for newExtremePoint in NewExtremePoints(sheetObject, newPart, marginBetweenParts):
+		sheetObject.extremePoints.append(newExtremePoint)	
+	for i in range(2):
+		sheetObject.extremePoints = SortArrayByArgMinIndex(sheetObject.extremePoints,1-i)
+	sheetObject.currentParts.append(newPart)
+
+##################################################################
+# Solve routine ##################################################
 
 def Solve(partList, sheetList, parameters):	
 	for part in partList:
@@ -261,9 +243,8 @@ def FeasibleAndBestMerit(part, index, sheet, currentBest):
 	else:
 		return False 
 
-'''# End solve routine ##############################'''
-
-# Solution generator ###############################
+###############################################################
+# Solution generator ##########################################
 
 def Solution(rawPartDict, sheetSize, options = False):
 	# options could signal the "randomized b&b" for instance...
@@ -282,11 +263,8 @@ def Solution(rawPartDict, sheetSize, options = False):
 		
 	return(FormattedOutput(Parts, Sheets, problemParameters))
 
-'''# end solution generation #########################'''
-
+############################################################################
 # Call the solver and return a solution... #################################
-
-
 
 def CutStock(inputData, sheetSize, Test = False):
     if Test:
@@ -307,4 +285,4 @@ if testing:
 if not testing:
     Output = CutStock(Input, SheetSize)
     ## Do Something with the Output...
-    # print(Output)
+    print(Output)
