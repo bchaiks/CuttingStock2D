@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 """ Part object """
 
 class PartObject:
@@ -20,7 +22,7 @@ class PartObject:
 		xPosition = self.Position[0] + margin
 		yPosition = self.Position[1] + margin + ySheetCoordinate
 		
-		return({'part': self.Label, 'x': xPosition , 'y': yPosition})
+		return(OrderedDict([('part', self.Label),('x', xPosition), ('y', yPosition)]))
 
 
 # for the 3D version add the orientation in here!

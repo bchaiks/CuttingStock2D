@@ -1,4 +1,6 @@
 
+from collections import OrderedDict
+
 """ Sheet Object """
 
 class SheetObject:
@@ -13,7 +15,7 @@ class SheetObject:
 							self.fullSize[1] - 2*Parameters.edgeMargin]
 		
 		self.yCoordinate = (Parameters.sheetMargin + self.fullSize[1]) * self.Index
-		self.Coordinates = {'sheet': self.Index, 'x': 0, 'y': self.yCoordinate}
+		self.Coordinates = OrderedDict([('sheet', self.Index), ('x', 0), ('y', self.yCoordinate)])
 	
 	
 		

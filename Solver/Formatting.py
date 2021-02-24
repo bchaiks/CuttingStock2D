@@ -1,5 +1,6 @@
-from .SolverObjects.PartObject import PartObject
-#import json
+from SolverObjects.PartObject import PartObject
+from collections import OrderedDict
+import json
 
 """ Functions for formatting input and output """
 
@@ -22,8 +23,8 @@ def FormattedOutput(reOrderedPartObjects, sheetObjects, parameters):
 	partOutput = [Part.FormatOutput(parameters) for Part in originalOrderPartsList]
 	sheetOutput = [Sheet.Coordinates for Sheet in sheetObjects]
 	
-	#formattedOutput = json.dumps({"results":{'parts': partOutput, 'sheets': sheetOutput}})
-	formattedOutput = {"results":{'parts': partOutput, 'sheets': sheetOutput}}
-	return(formattedOutput)
+	partsAndSheets = OrderedDict([('parts',partOutput),('sheets',sheetOutput)])
+	formattedOutput = OrderedDict([("results",partsAndSheets)])
+	return(json.dumps(formattedOutput))
 	
 
