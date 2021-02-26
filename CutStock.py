@@ -215,6 +215,12 @@ def AddPartToSheet(sheetObject, newPart, marginBetweenParts):
 ##################################################################
 # Solve routine ##################################################
 
+def FeasibleAndBestMerit(part, index, sheet, currentBest):
+	if CheckFeasibility(part, index, sheet) and BoundingBox(part, index, sheet) < currentBest:
+		return True
+	else:
+		return False 
+
 def Solve(partList, sheetList, parameters):	
 	for part in partList:
 		bestMerit = 2 * parameters.sheetSize[0] * parameters.sheetSize[1]
@@ -236,12 +242,6 @@ def Solve(partList, sheetList, parameters):
 			part.Position = sheetList[part.SheetIndex].extremePoints[0]
 			
 		AddPartToSheet(sheetList[part.SheetIndex], part, parameters.partMargin)				
-					
-def FeasibleAndBestMerit(part, index, sheet, currentBest):
-	if CheckFeasibility(part, index, sheet) and BoundingBox(part, index, sheet) < currentBest:
-		return True
-	else:
-		return False 
 
 ###############################################################
 # Solution generator ##########################################
